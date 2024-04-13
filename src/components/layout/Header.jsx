@@ -10,6 +10,9 @@ import { menuItems } from "../../data/header";
 import useUserStore from "../../store/user";
 import useProductStore from "../../store/products";
 import Searcharea from "../general/SearchArea";
+import useWishListStore from "../../store/wishlist";
+import { IoMdLogOut } from "react-icons/io";
+
 
 const Header = () => {
     const location = useLocation();
@@ -20,6 +23,7 @@ const Header = () => {
     const [cardLength, setCardLength] = useState(0);
     const [authenticated, setAuthenticated] = useState(false);
     const { user, logoutUser } = useUserStore();
+    const { wishListItems } = useWishListStore();
 
     const handleMenuToggle = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -43,6 +47,7 @@ const Header = () => {
             setAuthenticated(user?.authorized);
         });
     }, [products, user]);
+
 
     return (
         <div className="header">
@@ -99,14 +104,20 @@ const Header = () => {
                                             </div>
                                         )}
                                     </li>
-                                    <li>
+                                    <li className="relative">
                                         <Link to={"/wishlist"}>
                                             <FiHeart className="text-2xl" />
                                         </Link>
+
+                                        {wishListItems?.length > 0 && (
+                                            <div className="w-[20px] h-[20px] flex flex-wrap items-start justify-center text-white bg-themeSecondry-0 rounded-full absolute -top-[15px] -right-[10px]">
+                                                {wishListItems?.length}
+                                            </div>
+                                        )}
                                     </li>
                                     {authenticated && (
                                         <li>
-                                            <FiUser
+                                            <IoMdLogOut  
                                                 onClick={handleLogout}
                                                 className="cursor-pointer text-2xl"
                                             />

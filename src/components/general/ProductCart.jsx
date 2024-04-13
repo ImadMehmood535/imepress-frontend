@@ -4,11 +4,12 @@ import CardModal from "../CartModal";
 import Quickview from "./Quickview";
 import { Link } from "react-router-dom";
 import useProductStore from "../../store/products";
+import useWishListStore from "../../store/wishlist";
 
 const ProductCart = ({ item }) => {
   const { addToCart } = useProductStore();
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const { addToWishList } = useWishListStore();
   const handleAddToCart = (item) => {
     addToCart(item);
     setIsModalOpen(true);
@@ -39,7 +40,7 @@ const ProductCart = ({ item }) => {
           </div>
           <div className="options absolute top-4 -right-20 transition z-20">
             <div className="options_list flex flex-wrap flex-col gap-4">
-              <div className="rounded-lg bg-white hover:text-white hover:bg-themePrimary-0 transition-all shadow-lg flex justify-center px-4 py-4">
+              <div onClick={() => addToWishList(item)} className="rounded-lg bg-white hover:text-white hover:bg-themePrimary-0 transition-all shadow-lg flex justify-center px-4 py-4">
                 <FaRegHeart className="text-2xl " />
               </div>
               <Quickview item={item} />

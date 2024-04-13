@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import { FaAngleDown } from "react-icons/fa";
-import { Slider } from "@nextui-org/react";
+import { CheckboxGroup, Slider } from "@nextui-org/react";
 import { Checkbox } from "@nextui-org/react";
 
-const Shopsidebar = ({ brands, categoryitem }) => {
+const Shopsidebar = ({ brands, categoryitem  , setSelectedBrands , setSelectedPrice , selectedPrice}) => {
   const [isOpen, setIsOpen] = useState(true);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
-  const [value, setValue] = React.useState([100, 300]);
-
+  
   return (
     <div className="Shopsidebar">
       <div className="w-full py-6 pb-8">
@@ -39,7 +38,7 @@ const Shopsidebar = ({ brands, categoryitem }) => {
                       {category?.subCategories?.map((subCategory, index) => (
                         <li key={index}>
                           {subCategory?.subCategories &&
-                          subCategory?.subCategories?.length > 0 ? (
+                            subCategory?.subCategories?.length > 0 ? (
                             <details className="mb-2">
                               <summary className="bg-gray-100 p-3 rounded-lg cursor-pointer shadow">
                                 <span className="font-semibold">
@@ -82,8 +81,8 @@ const Shopsidebar = ({ brands, categoryitem }) => {
               step={10}
               maxValue={1000}
               minValue={0}
-              value={value}
-              onChange={setValue}
+              value={selectedPrice}
+              onChange={setSelectedPrice}
               classNames={{
                 base: "max-w-md",
                 filler: "bg-[#121212]",
@@ -110,11 +109,17 @@ const Shopsidebar = ({ brands, categoryitem }) => {
             <FaAngleDown />
           </h4>
           <div className="flex gap-4 flex-col">
-            {brands?.map((brand, index) => (
-              <Checkbox key={index} color="default" className="">
-                {brand?.name}
-              </Checkbox>
-            ))}
+            <CheckboxGroup
+              color="success"
+              onValueChange={setSelectedBrands}
+            >
+              {brands?.map((brand, index) => (
+                <Checkbox key={index} value={brand?.id} className="">
+                  {brand?.name}
+                </Checkbox>
+              ))}
+
+            </CheckboxGroup>
           </div>
         </div>
       </div>

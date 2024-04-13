@@ -2,8 +2,11 @@ import React from "react";
 import { TiArrowBack } from "react-icons/ti";
 import { FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import useWishListStore from "../store/wishlist";
 
 const WishlistComponent = ({ product }) => {
+
+  const { removeFromWishList } = useWishListStore();
   return (
     <div className="Wishlistdata">
       <div className="container w-full px-5 xl:w-[80%] mx-auto">
@@ -22,7 +25,7 @@ const WishlistComponent = ({ product }) => {
                   <div className="flex w-full sm:w-4/5">
                     <div className="w-36">
                       <img
-                        src={item?.image}
+                        src={item?.imageUrl}
                         alt={item?.name}
                         width={100}
                         height={100}
@@ -31,7 +34,7 @@ const WishlistComponent = ({ product }) => {
                     </div>
                     <div className="flex flex-col  ml-4 flex-grow">
                       <span className="font-bold text-base mb-3">
-                        <Link to={"/"}>{item?.name}</Link>
+                        <Link to={`/shop/${item.slug}`}>{item?.name}</Link>
                       </span>
                       <span className="text-[#A0A0A0] font-medium text-sm mb-3">
                         {item?.brand}
@@ -43,7 +46,7 @@ const WishlistComponent = ({ product }) => {
                   <div className="flex w-full sm:w-1/5 px-5 sm:px-0 my-3 sm:justify-center">
 
                     <div
-                      // onClick={() => removeFromCart(item?.id)}
+                      onClick={() => removeFromWishList(item?.id)}
                       className="font-semibold text-[#121212] hover:text-red-500 text-2xl cursor-pointer"
                     >
                       <FaTrashAlt />

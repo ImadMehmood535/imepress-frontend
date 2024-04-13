@@ -14,7 +14,8 @@ const Shop = () => {
   const [products, setProducts] = useState(null);
   const [categories, setCategories] = useState(null);
   const [brands, setBrands] = useState(null);
-
+  const [selectedPrice, setSelectedPrice] = React.useState([0, 300]);
+  const [selectedBrands, setSelectedBrands] = useState(null)
   const getData = async () => {
     let response;
     try {
@@ -39,7 +40,13 @@ const Shop = () => {
       {products && (
         <div className="container w-full py-14 px-5 xl:w-[80%] mx-auto flex flex-wrap">
           <div className="filter-side-bar  w-full sm:w-1/5">
-            <Shopsidebar brands={brands} categoryitem={categories} />
+            <Shopsidebar
+              setSelectedBrands={setSelectedBrands}
+              setSelectedPrice={setSelectedPrice}
+              brands={brands}
+              categoryitem={categories}
+              selectedPrice={selectedPrice}
+            />
           </div>
           <div className="shop-area w-full sm:w-4/5 px-7">
             <Filterbar
@@ -52,6 +59,8 @@ const Shop = () => {
             />
 
             <Productarea
+              selectedBrands={selectedBrands}
+              selectedPrice={selectedPrice}
               data={products}
               option={option}
               isChecked={isChecked}
