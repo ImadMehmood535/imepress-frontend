@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url(./custom.css);
+
+body,
+  /* html {
+    @apply overflow-x-hidden;
+    font-family: "Urbanist-Medium";
+  }
+  @font-face {
+    font-family: "Urbanist-Medium";
+    src: url("../assets/fonts/Urbanist/fonts/otf/Urbanist-Medium.otf");
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "Urbanist-Bold";
+    src: url("../assets/fonts/Urbanist/fonts/otf/Urbanist-Bold.otf");
+    font-weight: normal;
+    font-style: normal;
+  } */
+.container {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+}
+h1 {
+  @apply lg:text-5xl text-3xl font-bold;
+}
+h2 {
+  @apply lg:text-5xl text-3xl;
+}
+h3 {
+  @apply lg:text-3xl text-2xl;
+}
+h4 {
+  @apply lg:text-xl text-lg font-medium;
+}
+
+p {
+  @apply text-[18px] leading-7 text-[#616161]  font-medium;
+}
+
+.toast-message {
+  background: darkblue;
+  color: #fff;
+  font-size: 20px;
+  width: 34vw;
+  padding: 30px 20px;
+}
+
+.myContainer {
+  @apply container w-full px-3 lg:px-5  lg:w-[80%] mx-auto;
+}
