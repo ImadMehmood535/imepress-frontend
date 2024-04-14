@@ -6,6 +6,7 @@ import Salebanner from "./sale/Salebanner";
 import Filterbar from "./general/Filterbar"
 import Productarea from "./general/Productarea"
 import Newsletter from "./general/Newsletter";
+import Loader from "./general/Loader";
 
 
 const SaleComponent = () => {
@@ -13,12 +14,17 @@ const SaleComponent = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [sorting, setSorting] = useState("All");
   const [salesData, setSalesData] = useState(null);
+  const [loader, setLoader] = useState(true);
+
 
   const getData = async () => {
     try {
       const response = await API.getProductsQueryParams("isSale");
       setSalesData(response?.data?.data);
+      setLoader(false)
     } catch (error) {
+      setLoader(false)
+
       errorToast(error, "Can not fetch sale products");
     }
   };
@@ -39,16 +45,23 @@ const SaleComponent = () => {
           isChecked={isChecked}
           sorting={sorting}
           setSorting={setSorting}
+          showCheck={false}
         />
 
-        {salesData && (
-          <Productarea
-            data={salesData}
-            option={option}
-            isChecked={isChecked}
-            sorting={sorting}
-          />
+        {loader ? (
+          <Loader />
+        ) : (
+          salesData && (
+            <Productarea
+              data={salesData}
+              option={option}
+              isChecked={isChecked}
+              sorting={sorting}
+            />
+          )
         )}
+
+
       </div>
       <Newsletter />
     </div>

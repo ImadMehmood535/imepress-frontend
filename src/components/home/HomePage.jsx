@@ -43,29 +43,34 @@ const HomePage = () => {
     <>
       <Banner />
 
+
       {loading ? (
         <Loader />
-      ) : (
-        <>
-          <Homecateg data={homeCategData} />
-          <DailySale
-            data={dailyData}
-            title="Daily Sale"
-            exp="Top sale on this week"
-          />
-          <Featurecollection />
-          <Saletimer />
-          <Benefits />
-          <DailySale
-            data={featuredData}
-            title="Looks You’ll Love"
-            exp="get your featured products"
-          />
-          <Instafeeds />
-          <Newsletter />
-        </>
+      ) : (<>
+
+        <Homecateg data={homeCategData} />
+      </>
       )}
+
+
+      <DailySale
+        data={dailyData}
+        title="Daily Sale"
+        exp="Top sale on this week"
+      />
+      <Featurecollection />
+      <Saletimer />
+      <Benefits />
+      <DailySale
+        data={featuredData}
+        title="Looks You’ll Love"
+        exp="get your featured products"
+      />
+      <Instafeeds />
+      <Newsletter />
     </>
+
+
   );
 };
 

@@ -9,21 +9,32 @@ import { FaStar } from "react-icons/fa";
 import useProductStore from "../../store/products"
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import { FiEye } from "react-icons/fi";
+import useUserStore from "../../store/user";
+import SignModal from "../SignModal";
 
 const Quickview = ({ item }) => {
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
   const { addToCart } = useProductStore();
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
 
+  const { user } = useUserStore();
+  const [open, setOpen] = useState(false);
+
 
   const handleAddToCart = (item) => {
-    addToCart(item);
-    onClose();
+
+    if (user?.authorized) {
+      addToCart(item);
+      onClose();
+
+    } else {
+      setOpen(true)
+    }
   };
 
   const decrementQuantity = () => {
-    if (quantity > 0) {
-      setQuantity(quantity - 1);
+    if (quantity <= 0) {
+      setQuantity(quantity + 1);
     }
   };
 
@@ -57,7 +68,7 @@ const Quickview = ({ item }) => {
                       alt="popupimage"
                       width={450}
                       height={200}
-                      className=""
+                      className="max-w-[500px] w-full max-h-[500px] object-cover  "
                     />
                   </div>
                   <div className="popup-content-area w-full sm:w-6/12 py-10 px-5">
@@ -142,6 +153,7 @@ const Quickview = ({ item }) => {
                         >
                           Add to cart
                         </button>
+                        {open && <SignModal setOpen={setOpen} />}
                       </div>
                     </div>
                   </div>

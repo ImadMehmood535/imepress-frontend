@@ -5,14 +5,26 @@ import Quickview from "./Quickview";
 import { Link } from "react-router-dom";
 import useProductStore from "../../store/products";
 import useWishListStore from "../../store/wishlist";
+import useUserStore from "../../store/user";
+import SignModal from "../SignModal";
 
 const ProductCart = ({ item }) => {
   const { addToCart } = useProductStore();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { addToWishList } = useWishListStore();
+  const { user } = useUserStore();
+  const [open, setOpen] = useState(false)
+
   const handleAddToCart = (item) => {
-    addToCart(item);
-    setIsModalOpen(true);
+
+    if (user?.authorized) {
+      addToCart(item);
+      setIsModalOpen(true);
+
+    } else {
+      setOpen(true)
+
+    }
   };
 
   return (
@@ -62,6 +74,7 @@ const ProductCart = ({ item }) => {
             Add to cart
           </div>
           {isModalOpen && <CardModal />}
+          {open && <SignModal setOpen={setOpen} />}
         </div>
         <div className="detail-area py-3">
           <h4 className="font-bold text-[#121212] text-base capitalize">

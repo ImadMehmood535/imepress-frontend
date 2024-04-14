@@ -52,7 +52,7 @@ const Homecateg = ({ data }) => {
               </div>
               <div className="btn-area absolute bottom-2 left-0 right-0 flex flex-wrap justify-center">
                 <Link
-                  to="/"
+                  to={`/shop/?category=${category?.name}&id=${category?.id}`}
                   className=" bg-white py-2 px-2  w-auto text-center flex flex-wrap gap-3 items-center justify-between"
                 >
                   <div>

@@ -1,34 +1,32 @@
+import { Autocomplete, AutocompleteItem, Avatar } from "@nextui-org/react";
 import React from "react";
-import { IoSearch } from "react-icons/io5";
+import { LiaSearchSolid } from "react-icons/lia";
+import { Link, useNavigate } from "react-router-dom";
 
-const Searcharea = () => {
+const Searcharea = ({ productsData }) => {
+  const navigate = useNavigate();
+  const redirect = (slug) => {
+    navigate(`/shop/${slug}`)
+    window.location.reload();
+  }
   return (
-    <div className="searcharea">
-      <form className="w-full md:w-8/12">
-        <label
-          htmlFor="default-search"
-          className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+    <Autocomplete
+      className="max-w-md"
+      label="Search your products"
+      disableSelectorIconRotation
+      selectorIcon={<LiaSearchSolid className="text-2xl mr-3" />}
+    >
+      {productsData?.map((item) => (
+        <AutocompleteItem
+          key={item?.id}
+          onClick={() => redirect(item?.slug)}
+          startContent={<Avatar alt={item?.name} className="w-6 h-6" src={item?.imageUrl} />}
         >
-          Search
-        </label>
-        <div className="relative">
-          
-          <input
-            type="search"
-            id="default-search"
-            className="block w-full p-4  text-sm text-gray-900 border border-gray-300 rounded-[7px] bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Search Mockups, Logos..."
-            required
-          />
-          <button
-            type="submit"
-            className="text-black absolute end-2.5 bottom-2.5   focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2  dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
-            <IoSearch className="text-black" />
-          </button>
-        </div>
-      </form>
-    </div>
+          {item?.name}
+        </AutocompleteItem>
+
+      ))}
+    </Autocomplete>
   );
 };
 

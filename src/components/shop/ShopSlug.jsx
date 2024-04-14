@@ -10,7 +10,9 @@ import { API } from "../../api";
 import { errorToast } from "../../hooks/useToast";
 import Loader from "../general/Loader";
 import useProductStore from "../../store/products";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useUserStore from "../../store/user";
+import SignModal from "../SignModal";
 
 const ShopSlug = ({ slug }) => {
     const [quantity, setQuantity] = useState(1);
@@ -19,6 +21,10 @@ const ShopSlug = ({ slug }) => {
     const [loading, setLoading] = useState(true);
     const [loading2, setLoading2] = useState(true);
     const { addToCart } = useProductStore();
+    const { user } = useUserStore();
+    const [open, setOpen] = useState(false)
+    const navigate = useNavigate();
+
 
     const decrementQuantity = () => {
         if (quantity > 0) {
@@ -36,6 +42,7 @@ const ShopSlug = ({ slug }) => {
             setProduct(response?.data?.data);
             const res = await API.getProductByCategoryID(product?.categoryId);
             setRelatedProduct(res?.data?.data);
+            setRelatedProduct(relatedProduct?.filter((item) => item?.id != product?.id))
 
             setLoading(false);
             setLoading2(false);
@@ -51,6 +58,15 @@ const ShopSlug = ({ slug }) => {
         getData();
     }, []);
 
+    const handleCart = (product) => {
+        if (user?.authorized) {
+            addToCart(product)
+            navigate("/cart")
+        } else {
+            setOpen(true)
+        }
+
+    }
     return (
         <div className="single-product">
             {loading ? (
@@ -106,9 +122,7 @@ const ShopSlug = ({ slug }) => {
                                 <>
                                     <div className="short-des py-2">
                                         <p className="text-[#616161] text-lg">
-                                            The garments labelled as Committed are products that have been
-                                            produced using sustainable fibres or processes, reducing their
-                                            environmental impact.
+                                            {product?.shortDescription}
                                         </p>
                                     </div>
                                     <div className="divider md:py-10">
@@ -146,13 +160,13 @@ const ShopSlug = ({ slug }) => {
                                         </button>
                                     </div>
                                 </div>
-                                <Link
-                                    to={"/cart"}
-                                    onClick={() => addToCart({ ...product, quantity: quantity })}
+                                <div
+                                    onClick={() => { handleCart({ ...product, quantity: quantity }) }}
                                     className="add-to-cart flex justify-center font-semibold transition text-sm bg-[#121212] w-auto md:w-72 text-white rounded hover:text-white uppercase py-4 px-9 hover:bg-themePrimary-0 "
                                 >
                                     Add to cart
-                                </Link>
+                                </div>
+                                {open && <SignModal setOpen={setOpen} />}
                                 <div className="wishlist">
                                     <Tooltip content="Wishlist">
                                         <Button className="rounded-lg px-0 bg-white border py-4 h-full w-10 group/button inline-flex justify-center items-center gap-x-2 text-sm font-mediumborder border-gray-200 hover:bg-[#121212] shadow-sm">
@@ -243,7 +257,13 @@ const ShopSlug = ({ slug }) => {
             {loading2 ? (
                 <Loader />
             ) : (
-                <DailySale data={relatedProduct} title="Related Products" />
+                <>
+                    {relatedProduct?.length > 0 &&
+
+                        <DailySale data={relatedProduct} title="Related Products" />
+                    }
+
+                </>
             )}
         </div>
     );

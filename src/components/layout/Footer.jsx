@@ -17,10 +17,10 @@ const Footer = () => {
         <div className="footer border-t-1 border-[#E5E5E5]">
             <div className="container xl:w-[80%] mx-auto">
                 <footer className=" text-start text-neutral-600 lg:text-left ">
-                    <div className="mx-6 py-10 text-center md:text-left  dark:border-neutral-500 lg:justify-between">
+                    <div className="mx-6 py-10 text-left  dark:border-neutral-500 lg:justify-between">
                         <div className="grid-1 grid gap-8 md:grid-cols-5 lg:grid-cols-5">
                             <div className="">
-                                <div className="w-full md:max-w-[80%]">
+                                <div className="w-full max-w-[150px] ">
                                     <Link to="home" className="cursor-pointer">
                                         <img
                                             src={Footer_Logo}
@@ -31,7 +31,7 @@ const Footer = () => {
                                         />
                                     </Link>
                                 </div>
-                                <div className="flex justify-center">
+                                <div className="flex justify-start md:justify-center">
                                     <Link to={"/"} className="mr-6 cursor-pointer">
                                         <FaFacebookF className="fill-[#121212] hover:fill-[#ecca63]" />
                                     </Link>
@@ -50,7 +50,7 @@ const Footer = () => {
                                 </div>
                             </div>
                             <div className="">
-                                <h6 className="mb-4 flex justify-center font-semibold  md:justify-start">
+                                <h6 className="mb-4 flex  font-semibold  justify-start">
                                     Collection
                                 </h6>
                                 <ul className="text-[#616161] space-y-2 text-sm">
@@ -73,7 +73,7 @@ const Footer = () => {
                             </div>
 
                             <div className="">
-                                <h6 className="mb-4 flex justify-center font-semibold  md:justify-start">
+                                <h6 className="mb-4 flex  font-semibold  justify-start">
                                     Collection
                                 </h6>
                                 <ul className="text-[#616161] space-y-2 text-sm">
@@ -96,7 +96,7 @@ const Footer = () => {
                             </div>
 
                             <div className="">
-                                <h6 className="mb-4 flex justify-center font-semibold  md:justify-start">
+                                <h6 className="mb-4 flex  font-semibold  justify-start">
                                     Need Help
                                 </h6>
                                 <ul className="text-[#616161] space-y-2 text-sm">
@@ -119,10 +119,10 @@ const Footer = () => {
                             </div>
                             {/* <!-- Contact section --> */}
                             <div>
-                                <h6 className="mb-4 flex justify-center font-semibold uppercase md:justify-start">
+                                <h6 className="mb-4 flex   font-semibold uppercase justify-start">
                                     Exclusive Services
                                 </h6>
-                                <p className="mb-4 flex items-center justify-center md:justify-start space-x-2 text-[#616161]">
+                                <p className="mb-4 flex items-center justify-start space-x-2 text-[#616161]">
                                     <LuPhoneIncoming className="text-base" />
                                     <span className="">
                                         {" "}
@@ -132,7 +132,7 @@ const Footer = () => {
                                         </Link>
                                     </span>
                                 </p>
-                                <p className="mb-4 flex items-center justify-center md:justify-start space-x-2 text-[#616161]">
+                                <p className="mb-4 flex items-center justify-start space-x-2 text-[#616161]">
                                     <MdOutlineMail className="text-base" />
                                     <span className="">
                                         <Link to="maito:" className="text-base">
@@ -140,7 +140,7 @@ const Footer = () => {
                                         </Link>
                                     </span>
                                 </p>
-                                <p className="mb-4 flex items-center justify-center md:justify-start space-x-2 text-[#616161]">
+                                <p className="mb-4 flex items-center justify-start space-x-2 text-[#616161]">
                                     <HiOutlineLocationMarker className="text-base" />
                                     <span className="">
                                         <Link to="/" className="text-base">

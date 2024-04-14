@@ -17,6 +17,7 @@ const Filterbar = ({
   isChecked,
   sorting,
   setSorting,
+  showCheck
 }) => {
   const [isfilterbar, setIsfilterbar] = useState(false);
 
@@ -41,21 +42,24 @@ const Filterbar = ({
       <div className=" w-full ">
         <div className="flex flex-wrap items-center justify-between">
           <div className=" flex flex-wrap gap-3 flex-row">
-            <button
-              id="filter"
-              onClick={handleMenuToggle}
-              className="text-black font-medium text-lg px-5 py-2.5 text-center inline-flex items-center"
-            >
-              <img
-                src={Filter}
-                alt="Filter"
-                width={30}
-                height={24}
-                className=" pr-1"
-              />
-              Filter{" "}
-            </button>
-            <div className="view-list">
+            {!showCheck &&
+              <button
+                id="filter"
+                onClick={handleMenuToggle}
+                className="text-black font-medium text-lg px-5 py-2.5 text-center inline-flex items-center"
+              >
+                <img
+                  src={Filter}
+                  alt="Filter"
+                  width={30}
+                  height={24}
+                  className=" pr-1"
+                />
+                Filter{" "}
+              </button>
+
+            }
+            <div className="view-list flex gap-3">
               <Button
                 id="filter"
                 className={`text-black font-medium text-lg px-0 py-0 bg-transparent text-center inline-flex items-center  min-w-9 ${option === 2 ? "active" : ""
@@ -99,16 +103,20 @@ const Filterbar = ({
                 />
               </Button>
             </div>
-            <div className="flex items-center">
-              <Checkbox
-                id="checked-checkbox"
-                type="checkbox"
-                onChange={handleChange}
-                className=" text-blue-600  border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 "
-              >
-                {`Show only products on sale ${isChecked}`}
-              </Checkbox>
-            </div>
+            {showCheck &&
+              <div className="flex items-center">
+                <Checkbox
+                  id="checked-checkbox"
+                  type="checkbox"
+                  onChange={handleChange}
+                  color="warning"
+                  className=" text-blue-600  border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 "
+                >
+                  {`Show only products on sale`}
+                </Checkbox>
+              </div>
+
+            }
           </div>
           <div className="">
             <Dropdown>

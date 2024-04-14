@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 const DisplayBlogs = ({ blogs, blogName }) => {
   const filteredBlogs = blogName
     ? blogs?.filter((item) =>
-        item?.name?.toLowerCase().startsWith(blogName?.toLowerCase())
-      )
+      item?.name?.toLowerCase().startsWith(blogName?.toLowerCase())
+    )
     : blogs;
 
   return (
@@ -33,7 +33,7 @@ const DisplayBlogs = ({ blogs, blogName }) => {
             </p>
             <p>{item?.shortDescription}</p>
             <Link
-              to={`blogs/${item?.slug}`}
+              to={`${item?.slug}`}
               className="font-bold underline text-black cursor-pointer"
             >
               Read More
