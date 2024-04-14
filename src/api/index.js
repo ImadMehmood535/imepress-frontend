@@ -156,4 +156,9 @@ API.getProductByCategoryID = (id) => {
   return API.get(`product/by-category?categoryId=${id}`);
 };
 
+//newsletter
+API.registerNewsLetter = (data) => {
+  return API.post("newsletter", data);
+};
+
 export { API };
