@@ -3,21 +3,29 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { errorToast, successToast } from "../../hooks/useToast";
 import { API } from "../../api";
+import * as yup from "yup";
+import { yupResolver } from '@hookform/resolvers/yup';
+const schema = yup.object().shape({
+  email: yup.string().email("Invalid email format").required("Email is required")
+});
 
 const Newsletter = () => {
-  const { register, handleSubmit } = useForm();
-  const [loading, setLoading] = useState(false)
+  const { register, handleSubmit, reset, formState: { errors } } = useForm({
+    resolver: yupResolver(schema)
+  });
+  const [loading, setLoading] = useState(false);
+
 
   const onSubmit = async (data) => {
-    setLoading(true)
+    setLoading(true);
     try {
       const response = await API.registerNewsLetter(data);
-      setLoading(false)
-      successToast(response?.data?.message)
-
+      setLoading(false);
+      reset();
+      successToast(response?.data?.message);
     } catch (error) {
-      setLoading(false)
-      errorToast(error, "Can not Subscribe at the moment")
+      setLoading(false);
+      errorToast(error, "Can not Subscribe at the moment");
     }
   };
 
@@ -37,12 +45,13 @@ const Newsletter = () => {
                 Email address
               </label>
               <input
-                className="block h-full px-5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-[#E5E5E5] sm:rounded-none sm:rounded-l-lg focus:ring-primary-500 focus:border-primary-500 focus:border-r-0"
+                className={`block h-full px-5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border ${errors.email ? "border-red-500" : "border-[#E5E5E5]"} sm:rounded-none sm:rounded-l-lg focus:ring-primary-500 focus:border-primary-500 focus:border-r-0`}
                 placeholder="Enter your email"
-                type="email"
+                type="text"
                 id="email"
-                {...register("email", { required: true })}
+                {...register("email")}
               />
+              {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
             </div>
             <div>
               <Button
