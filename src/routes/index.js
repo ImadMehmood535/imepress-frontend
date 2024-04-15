@@ -11,6 +11,7 @@ import WishList from "../pages/WishList";
 import Slug from "../pages/blog/Slug";
 import SlugShop from "../pages/shop/SlugShop";
 import Faq from "../pages/Faq";
+import ForgotPassword from "../pages/Forgot-Password";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: "/sign-up",
         element: <Register />,
+      },
+      {
+        path: "/forgot-password",
+        element: <ForgotPassword />,
       },
       {
         path: "/wishlist",
