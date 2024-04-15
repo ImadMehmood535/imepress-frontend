@@ -13,6 +13,7 @@ import SlugShop from "../pages/shop/SlugShop";
 import Faq from "../pages/Faq";
 import ForgotPassword from "../pages/Forgot-Password";
 import TermsAndConditions from "../pages/TermsAndConditions";
+import Contact from "../pages/Contact";
 
 const router = createBrowserRouter([
   {
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
       {
         path: "/teem-&-conditions",
         element: <TermsAndConditions />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
       },
     ],
   },

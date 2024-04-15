@@ -110,7 +110,7 @@ const Footer = () => {
                                         <Link to="/faq">FAQ & Helps</Link>{" "}
                                     </li>
                                     <li>
-                                        <Link to="/">Terms & Conditions</Link>{" "}
+                                        <Link to="/teem-&-conditions">Terms & Conditions</Link>{" "}
                                     </li>
                                     <li>
                                         <Link to="/">Legal & Privacy</Link>{" "}
