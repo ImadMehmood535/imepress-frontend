@@ -35,11 +35,6 @@ const ForgotPasswordForm = () => {
     }
   };
 
-  const [isShow, setIsShow] = useState(false);
-
-  const handleShow = (isShow) => {
-    setIsShow(!isShow);
-  };
   return (
     <>
       <div className="formarea">
