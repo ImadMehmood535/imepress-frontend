@@ -10,6 +10,7 @@ import Cart from "../pages/Cart";
 import WishList from "../pages/WishList";
 import Slug from "../pages/blog/Slug";
 import SlugShop from "../pages/shop/SlugShop";
+import Faq from "../pages/Faq";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/faq",
+        element: <Faq />,
       },
     ],
   },
