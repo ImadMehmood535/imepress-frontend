@@ -6,7 +6,7 @@ const CurrencyInput = () => {
     return (
         <Select
             className="max-w-xs"
-            defaultSelectedKeys={["USD"]}
+            defaultSelectedKeys={["AED"]}
             selectorIcon={<IoMdArrowDropdownCircle color="black" />}
             items={currency}
             renderValue={(items) => {

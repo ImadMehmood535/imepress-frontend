@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Banner from "./Banner";
 import Homecateg from "./Homecateg";
-import DailySale from "../general/DailySale"
-import { errorToast } from "../../hooks/useToast"
+import DailySale from "../general/DailySale";
+import { errorToast } from "../../hooks/useToast";
 import Loader from "../general/Loader";
-import { API } from "../../api/index"
-import Featurecollection from "./Featurecollection"
-import Saletimer from "./Saletimer"
-import Benefits from "./Benefits"
-import Instafeeds from "./Instafeeds"
-import Newsletter from "../general/Newsletter"
-
+import { API } from "../../api/index";
+import Featurecollection from "./Featurecollection";
+import Saletimer from "./Saletimer";
+import Benefits from "./Benefits";
+import Instafeeds from "./Instafeeds";
+import Newsletter from "../general/Newsletter";
 
 const HomePage = () => {
   const [homeCategData, setHomeCategData] = useState(null);
@@ -35,23 +34,22 @@ const HomePage = () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+
     getData();
   }, []);
-
 
   return (
     <>
       <Banner />
 
-
       {loading ? (
         <Loader />
-      ) : (<>
-
-        <Homecateg data={homeCategData} />
-      </>
+      ) : (
+        <>
+          <Homecateg data={homeCategData} />
+        </>
       )}
-
 
       <DailySale
         data={dailyData}
@@ -69,8 +67,6 @@ const HomePage = () => {
       <Instafeeds />
       <Newsletter />
     </>
-
-
   );
 };
 
