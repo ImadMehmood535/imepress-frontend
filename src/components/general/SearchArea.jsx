@@ -11,7 +11,7 @@ const Searcharea = ({ productsData }) => {
   }
   return (
     <Autocomplete
-      className="max-w-md"
+      className="max-w-lg"
       label="Search your products"
       disableSelectorIconRotation
       selectorIcon={<LiaSearchSolid className="text-2xl mr-3" />}

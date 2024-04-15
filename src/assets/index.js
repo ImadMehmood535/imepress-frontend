@@ -26,7 +26,7 @@ import Grid_List from "./images/Grid_List.svg";
 import popupimage from "./images/popupimage.png";
 import emptyCart from "./images/empty-cart.png";
 import Delivery_Truck from "./images/Delivery-Truck.png";
-
+import nocontent from "./images/nocontent.svg";
 
 export {
   Header_logo,
@@ -56,5 +56,6 @@ export {
   Grid_List,
   popupimage,
   emptyCart,
-  Delivery_Truck
+  Delivery_Truck,
+  nocontent,
 };
