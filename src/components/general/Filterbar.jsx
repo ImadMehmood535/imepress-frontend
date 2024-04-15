@@ -17,12 +17,13 @@ const Filterbar = ({
   isChecked,
   sorting,
   setSorting,
-  showCheck
+  showCheck,
+  setShowSideBar,
+  showSideBar
 }) => {
-  const [isfilterbar, setIsfilterbar] = useState(false);
-
+  
   const handleMenuToggle = () => {
-    setIsfilterbar(!isfilterbar);
+    setShowSideBar(!showSideBar);
   };
 
   const [selectedKeys, setSelectedKeys] = React.useState(
@@ -38,15 +39,15 @@ const Filterbar = ({
     setIsChecked((prevState) => !prevState);
   };
   return (
-    <div className="Filterbar">
+    <div className="Filterbar ">
       <div className=" w-full ">
-        <div className="flex flex-wrap items-center justify-between">
+        <div className="flex flex-wrap items-center justify-between gap-2">
           <div className=" flex flex-wrap gap-3 flex-row">
             {!showCheck &&
               <button
                 id="filter"
                 onClick={handleMenuToggle}
-                className="text-black font-medium text-lg px-5 py-2.5 text-center inline-flex items-center"
+                className="text-black font-medium text-lg px-0 sm:px-5 py-2.5 text-center inline-flex items-center"
               >
                 <img
                   src={Filter}

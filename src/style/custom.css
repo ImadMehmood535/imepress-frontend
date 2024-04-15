@@ -89,11 +89,13 @@
   }
   .ProductCart:hover .item .image-area .options {
     right: 20px;
+    
   }
   
   .ProductCart .item .image-area .options,
   .ProductCart .item .image-area .btn-area,
   .ProductCart:hover .item .image-area img {
+    transition: all;
     transition: 0.3s;
   }
   

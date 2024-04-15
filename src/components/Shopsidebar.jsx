@@ -52,8 +52,8 @@ const Shopsidebar = ({
   };
 
   return (
-    <div className="Shopsidebar">
-      <div className="w-full py-6 pb-8">
+    <div className="Shopsidebar z-50 ">
+      <div className="w-full py-6 pb-8 px-4 sm:px-0 bg-white sm:h-auto max-h-full">
         <div className="relative transition-all mb-4">
           <button
             type="button"
