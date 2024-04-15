@@ -69,7 +69,7 @@ const Header = () => {
 
 
     return (
-        <div className="header">
+        <div className="header ">
             <div className="container sm:max-w-[100%]">
                 <div className="top-bar bg-themeSecondry-0 flex flex-wrap items-center justify-center py-2 text-center sm:text-left">
                     <p className="text-themePrimary-0-0">

@@ -1,24 +1,45 @@
 import React, { useEffect, useState } from "react";
 import ProductCart from "./ProductCart";
 
-const Productarea = ({ data, option, isChecked, sorting, selectedPrice, selectedBrands, selectedSubCategoies, selectedCategories }) => {
+const Productarea = ({
+  data,
+  option,
+  isChecked,
+  sorting,
+  selectedPrice,
+  selectedBrands,
+  selectedSubCategoies,
+  selectedCategories,
+}) => {
   const filteredData1 = isChecked
     ? data.filter((item) => item?.tags?.sale)
     : data;
 
   const filteredData2 = selectedPrice
-    ? filteredData1.filter((item) => item.price >= selectedPrice[0] && item.price <= selectedPrice[1])
+    ? filteredData1.filter(
+        (item) =>
+          item.price >= selectedPrice[0] && item.price <= selectedPrice[1]
+      )
     : filteredData1;
 
-  const filteredData3 = selectedBrands && selectedBrands.length > 0
-    ? filteredData2.filter((item) => selectedBrands.includes(item?.brandId))
-    : filteredData2;
+  const filteredData3 =
+    selectedBrands && selectedBrands.length > 0
+      ? filteredData2.filter((item) => selectedBrands.includes(item?.brandId))
+      : filteredData2;
 
-  const filteredData4 = selectedSubCategoies && selectedSubCategoies.length > 0
-    ? filteredData3.filter((item) => selectedSubCategoies.includes(item?.subCategoryId)) : filteredData3
+  const filteredData4 =
+    selectedSubCategoies && selectedSubCategoies.length > 0
+      ? filteredData3.filter((item) =>
+          selectedSubCategoies.includes(item?.subCategoryId)
+        )
+      : filteredData3;
 
-  const filteredData5 = selectedCategories && selectedCategories.length > 0
-    ? filteredData4.filter((item) => selectedCategories.includes(item?.categoryId)) : filteredData4
+  const filteredData5 =
+    selectedCategories && selectedCategories.length > 0
+      ? filteredData4.filter((item) =>
+          selectedCategories.includes(item?.categoryId)
+        )
+      : filteredData4;
 
   const sortedData = [...filteredData5];
   switch (sorting) {
@@ -39,7 +60,6 @@ const Productarea = ({ data, option, isChecked, sorting, selectedPrice, selected
       const width = window.innerWidth;
       if (width < 768) {
         setScreenSize("xs");
-
       } else {
         setScreenSize("lg");
       }
@@ -54,21 +74,19 @@ const Productarea = ({ data, option, isChecked, sorting, selectedPrice, selected
     };
   }, []);
 
-
-  console.log(selectedSubCategoies)
-
   return (
-    <div className="Productarea">
+    <div className="Productarea z-10">
       <div className="w-full">
         <div
-          className={`product_area mt-8 grid gap-4 mb-2 ${screenSize === "xs"
-            ? "grid-cols-1"
-            : option === 3
+          className={`product_area mt-8 grid gap-4 mb-2 ${
+            screenSize === "xs"
+              ? "grid-cols-1"
+              : option === 3
               ? "grid-cols-3"
               : option === 2
-                ? "grid-cols-2"
-                : "grid-cols-4"
-            }`}
+              ? "grid-cols-2"
+              : "grid-cols-4"
+          }`}
         >
           {sortedData?.map((item, index) => (
             <ProductCart item={item} key={index} />
@@ -76,7 +94,6 @@ const Productarea = ({ data, option, isChecked, sorting, selectedPrice, selected
         </div>
       </div>
     </div>
-
   );
 };
 

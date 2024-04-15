@@ -29,15 +29,15 @@ const ProductCart = ({ item }) => {
 
   return (
     <div className="ProductCart">
-      <div className="item group/product">
-        <div className="image-area relative border py-14 px-10 text-center min-h-[450px] overflow-hidden flex items-center">
+      <div className="item group/product transition-all duration-500 ">
+        <div className="image-area relative border py-14 px-10 text-center min-h-[450px] overflow-hidden flex items-center justify-center">
           <div className="tag-wrapper absolute top-2 left-2">
             {Object.entries(item.tags).map(([tag, value]) => {
               if (value) {
                 return (
                   <div
                     key={tag}
-                    className="bg-themeSecondry-0 z-40 relative  uppercase rounded-md py-1 px-4 text-white font-bold mb-2"
+                    className="bg-themeSecondry-0 z-30 relative  uppercase rounded-md py-1 px-4 text-white font-bold mb-2"
                   >
                     {tag}
                   </div>
@@ -45,7 +45,7 @@ const ProductCart = ({ item }) => {
               }
             })}
             {item?.discount > 0 && (
-              <div className="bg-themePrimary-0 z-40 relative uppercase rounded-md py-1 px-4 text-white font-bold">
+              <div className="bg-themePrimary-0 z-30 relative uppercase rounded-md py-1 px-4 text-white font-bold">
                 {item?.discount}%
               </div>
             )}
@@ -64,7 +64,7 @@ const ProductCart = ({ item }) => {
               alt={item?.name}
               width={250}
               height={250}
-              className="w-full z-10"
+              className="w-full z-10 aspect-square h-auto max-h-[350px]"
             />
           </Link>
           <div
