@@ -4,4 +4,5 @@ export const menuItems = [
     { id: "Shop", label: "Shop", to: "/shop" },
     // { id: "Category", label: "Category", to: "/category" },
     { id: "Blogs", label: "Blogs", to: "/blogs" },
+    { id: "Faq's", label: "Faq's", to: "/faq" },
   ];
