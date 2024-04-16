@@ -1,9 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import InnerpageHeader from "../general/InnerpageHeader";
 import { Button } from "@nextui-org/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { API } from "../../api";
+import { errorToast, successToast } from "../../hooks/useToast";
 
 const ContactComponent = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+
+  const onSubmit = async (data) => {
+    console.log(data);
+    setLoading(true);
+    try {
+      const response = await API.contactForm(data);
+      successToast(response?.data?.message);
+      setLoading(false);
+      navigate("/");
+    } catch (error) {
+      setLoading(false);
+      errorToast(error, "Form Not Send Please Try Again!");
+    }
+  };
   return (
     <div className="contact-page">
       <InnerpageHeader pageTitle={"Contact Us"} breadcrums={"Contact Us"} />
@@ -57,6 +81,7 @@ const ContactComponent = () => {
             </div>
           </div>
         </div>
+
         <div className="lg:w-1/3 md:w-1/2 bg-white flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0">
           <h2 className="text-gray-900 text-lg mb-1 font-medium title-font">
             Contact Us
@@ -65,47 +90,70 @@ const ContactComponent = () => {
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry.
           </p>
-          <div className="relative mb-4">
-            <label htmlFor="name" className="leading-7 text-sm text-gray-600">
-              Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              className="w-full bg-white rounded border border-gray-300 focus:border-themePrimary-0 focus:ring-2 focus:ring-blue-500-200 text-base outline-none text-gray-700 py-1 px-3 leading-10 transition-colors duration-200 ease-in-out"
-            />
-          </div>
-          <div className="relative mb-4">
-            <label htmlFor="email" className="leading-7 text-sm text-gray-600">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              className="w-full bg-white rounded border border-gray-300 focus:border-themePrimary-0 focus:ring-2 focus:ring-blue-500-200 text-base outline-none text-gray-700 py-1 px-3 leading-10 transition-colors duration-200 ease-in-out"
-            />
-          </div>
-          <div className="relative mb-4">
-            <label
-              htmlFor="message"
-              className="leading-7 text-sm text-gray-600"
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="relative mb-4">
+              <label htmlFor="name" className="leading-7 text-sm text-gray-600">
+                Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                className={`w-full bg-white rounded border border-gray-300  focus:ring-2 focus:ring-blue-500  ${
+                  errors?.name
+                    ? "focus:border-red-800 focus:ring-red-500"
+                    : "focus:border-themePrimary-0 focus:ring-blue-400"
+                } text-base outline-none text-gray-700 py-1 px-3 leading-10 transition-colors duration-200 ease-in-out`}
+                {...register("name", { required: true })}
+              />
+              {errors?.name && (
+                <p className="text-sm text-red-800">Name is required</p>
+              )}
+            </div>
+            <div className="relative mb-4">
+              <label
+                htmlFor="email"
+                className="leading-7 text-sm text-gray-600"
+              >
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                className={`w-full bg-white rounded border border-gray-300  focus:ring-2 focus:ring-blue-500  ${
+                  errors?.email
+                    ? "focus:border-red-800 focus:ring-red-500"
+                    : "focus:border-themePrimary-0 focus:ring-blue-400"
+                } text-base outline-none text-gray-700 py-1 px-3 leading-10 transition-colors duration-200 ease-in-out`}
+                {...register("email", { required: true })}
+              />
+              {errors?.email && (
+                <p className="text-sm text-red-800">Email Is Required</p>
+              )}
+            </div>
+            <div className="relative mb-4">
+              <label
+                htmlFor="message"
+                className="leading-7 text-sm text-gray-600"
+              >
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                className="w-full bg-white rounded border border-gray-300 focus:border-themePrimary-0 focus:ring-2 focus:ring-blue-500-200  h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
+                {...register("message", { required: false })}
+              ></textarea>
+            </div>
+            <Button
+              type="submit"
+              isLoading={loading}
+              className="w-[100%] h-[58px] text-1xl bg-zinc-950 text-white rounded-md"
             >
-              Message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              className="w-full bg-white rounded border border-gray-300 focus:border-themePrimary-0 focus:ring-2 focus:ring-blue-500-200  h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
-            ></textarea>
-          </div>
-          <Button
-            type="submit"
-            className="w-[100%] h-[58px] text-1xl bg-zinc-950 text-white rounded-md"
-          >
-            Submit
-          </Button>
+              Submit
+            </Button>
+          </form>
         </div>
       </div>
     </div>

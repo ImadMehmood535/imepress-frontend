@@ -52,6 +52,7 @@ const Loginform = () => {
               <input
                 type="text"
                 name="email"
+                className={`w-full bg-white rounded border border-gray-300  focus:ring-2 focus:ring-blue-500  ${errors?.email ? 'focus:border-red-800 focus:ring-red-500' : 'focus:border-themePrimary-0 focus:ring-blue-400'} text-base outline-none text-gray-700 py-1 px-3 leading-10 transition-colors duration-200 ease-in-out`}
                 {...register("email", { required: true })}
               />
               {errors?.email && (
@@ -67,6 +68,7 @@ const Loginform = () => {
               <input
                 type={isShow ? "text" : "password"}
                 name="password"
+                className={`w-full bg-white rounded border border-gray-300  focus:ring-2 focus:ring-blue-500  ${errors?.password ? 'focus:border-red-800 focus:ring-red-500' : 'focus:border-themePrimary-0 focus:ring-blue-400'} text-base outline-none text-gray-700 py-1 px-3 leading-10 transition-colors duration-200 ease-in-out`}
                 {...register("password", { required: true })}
               />
               <div className="absolute inset-y-0 right-0 pr-3 flex items-center  leading-5 text-3xl">

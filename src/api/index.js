@@ -161,6 +161,11 @@ API.registerNewsLetter = (data) => {
   return API.post("newsletter", data);
 };
 
+//contactForm
+API.contactForm = (data) => {
+  return API.post("contactform", data);
+};
+
 //currency
 
 API.getConvertedCurrency = (code) => {
