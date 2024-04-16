@@ -166,6 +166,11 @@ API.contactForm = (data) => {
   return API.post("contactform", data);
 };
 
+//checkoutform
+API.checkoutForm = (data) => {
+  return API.post("checkoutform", data);
+};
+
 //currency
 
 API.getConvertedCurrency = (code) => {

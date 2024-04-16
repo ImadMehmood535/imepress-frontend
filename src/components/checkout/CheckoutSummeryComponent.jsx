@@ -2,7 +2,8 @@ import React from "react";
 import { Header_logo } from "../../assets";
 import { Link } from "react-router-dom";
 
-const CheckoutSummeryComponent = () => {
+const CheckoutSummaryComponent = ({setBtnsubmit}) => {
+  console.log(setBtnsubmit);
   return (
     <div>
       <div
@@ -62,6 +63,7 @@ const CheckoutSummeryComponent = () => {
           </div>
 
           <button className="bg-[#121212] py-3 px-6 rounded-lg font-semibold hover:bg-[#164A8C] transition text-sm mb-3 text-white uppercase w-full border">
+            
             Checkout
           </button>
           <button className=" font-semibold transition text-sm text-[#121212] uppercase w-full ">
@@ -73,4 +75,4 @@ const CheckoutSummeryComponent = () => {
   );
 };
 
-export default CheckoutSummeryComponent;
+export default CheckoutSummaryComponent;
