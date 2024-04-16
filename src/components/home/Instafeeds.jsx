@@ -1,7 +1,12 @@
- 
- import React from "react";
+import React from "react";
 import { FaInstagram } from "react-icons/fa6";
-import { instafeed1, instafeed2, instafeed3, instafeed4, instafeed5 } from "../../assets";
+import {
+  instafeed1,
+  instafeed2,
+  instafeed3,
+  instafeed4,
+  instafeed5,
+} from "../../assets";
 
 const Instafeeds = () => {
   return (
@@ -19,7 +24,7 @@ const Instafeeds = () => {
               height={450}
               className="w-full"
             />
-            <div className="icon py-2 px-2 rounded-lg absolute mx-auto my-auto bg-white transition hidden group-hover/insta:block">
+            <div className="icon py-2 px-2 rounded-lg absolute mx-auto my-auto bg-white opacity-0 group-hover/insta:opacity-100 transition-all duration-500">
               <FaInstagram className="text-4xl" />
             </div>
           </div>
@@ -31,7 +36,7 @@ const Instafeeds = () => {
               height={450}
               className="w-full"
             />
-            <div className="icon py-2 px-2 rounded-lg absolute mx-auto my-auto bg-white transition hidden group-hover/insta:block">
+            <div className="icon py-2 px-2 rounded-lg absolute mx-auto my-auto bg-white opacity-0 group-hover/insta:opacity-100 transition-all duration-500">
               <FaInstagram className="text-4xl" />
             </div>
           </div>
@@ -43,7 +48,7 @@ const Instafeeds = () => {
               height={450}
               className="w-full"
             />
-            <div className="icon py-2 px-2 rounded-lg absolute mx-auto my-auto bg-white transition hidden group-hover/insta:block">
+            <div className="icon py-2 px-2 rounded-lg absolute mx-auto my-auto bg-white opacity-0 group-hover/insta:opacity-100 transition-all duration-500">
               <FaInstagram className="text-4xl" />
             </div>
           </div>
@@ -55,7 +60,7 @@ const Instafeeds = () => {
               height={450}
               className="w-full"
             />
-            <div className="icon py-2 px-2 rounded-lg absolute mx-auto my-auto bg-white transition hidden group-hover/insta:block">
+            <div className="icon py-2 px-2 rounded-lg absolute mx-auto my-auto bg-white opacity-0 group-hover/insta:opacity-100 transition-all duration-500">
               <FaInstagram className="text-4xl" />
             </div>
           </div>
@@ -67,7 +72,7 @@ const Instafeeds = () => {
               height={450}
               className="w-full"
             />
-            <div className="icon py-2 px-2 rounded-lg absolute mx-auto my-auto bg-white transition hidden group-hover/insta:block">
+            <div className="icon py-2 px-2 rounded-lg absolute mx-auto my-auto bg-white opacity-0 group-hover/insta:opacity-100 transition-all duration-500">
               <FaInstagram className="text-4xl" />
             </div>
           </div>

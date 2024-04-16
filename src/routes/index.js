@@ -14,6 +14,7 @@ import Faq from "../pages/Faq";
 import ForgotPassword from "../pages/Forgot-Password";
 import TermsAndConditions from "../pages/TermsAndConditions";
 import Contact from "../pages/Contact";
+import Checkout from "../pages/Checkout";
 
 const router = createBrowserRouter([
   {
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/checkout",
+        element: <Checkout/>,
       },
     ],
   },
