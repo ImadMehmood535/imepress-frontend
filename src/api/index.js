@@ -161,4 +161,10 @@ API.registerNewsLetter = (data) => {
   return API.post("newsletter", data);
 };
 
+//currency
+
+API.getConvertedCurrency = (code) => {
+  return API.get(`currency/${new Date()}?code=${code}`);
+};
+
 export { API };
