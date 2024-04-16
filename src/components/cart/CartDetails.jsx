@@ -160,10 +160,10 @@ const CartDetails = () => {
                 </div>
 
                 <button className="bg-[#121212] py-3 px-6 rounded-lg font-semibold hover:bg-[#164A8C] transition text-sm mb-3 text-white uppercase w-full border">
-                  Checkout
+                  <Link to="/checkout">Checkout</Link>
                 </button>
                 <button className=" font-semibold transition text-sm text-[#121212] uppercase w-full ">
-                  Or continue shopping
+                  <Link to="/shop"> Or continue shopping</Link>
                 </button>
               </div>
             </div>
