@@ -4,10 +4,13 @@ import useProductStore from "../../store/products";
 import { Link } from "react-router-dom";
 import { nocontent } from "../../assets";
 import NoContent from "../NoContent";
+import useCurrencyStore from "../../store/currency";
+import { convertor } from "../../utils/currencyConvertor";
 
 const CartDetails = () => {
   const { products, removeFromCart, updateProduct } = useProductStore();
   const [totalPrice, setTotalPrice] = useState(0);
+  const { currentCurrency } = useCurrencyStore();
 
   const handleIncrement = (productId) => {
     updateProduct({
@@ -29,10 +32,10 @@ const CartDetails = () => {
   useEffect(() => {
     let totalPrice = 0;
     products.forEach((item) => {
-      totalPrice += item.price * item.quantity;
+      totalPrice += convertor(item, currentCurrency) * item.quantity;
     });
     setTotalPrice(totalPrice);
-  }, [products]);
+  }, [products, currentCurrency]);
 
   return (
     <div className="CartDetails pt-24 py-12">
@@ -90,7 +93,10 @@ const CartDetails = () => {
                         <b>Price</b>
                       </div>
                       <span className="text-center font-medium text-base text-[#616161]">
-                        <span className="price">${item?.price}</span>
+                        <span className="price">
+                          {currentCurrency?.countryCode}{" "}
+                          {convertor(item, currentCurrency)}
+                        </span>
                       </span>
                     </div>
 
@@ -120,7 +126,10 @@ const CartDetails = () => {
                       </div>
                       <h4 className="text-center font-bold text-base text-[#121212]">
                         <span className="price">
-                          ${(item.price * item.quantity).toFixed(2)}
+                          {currentCurrency?.countryCode}{" "}
+                          {(
+                            convertor(item, currentCurrency) * item.quantity
+                          ).toFixed(2)}
                         </span>
                       </h4>
                     </div>
@@ -156,12 +165,18 @@ const CartDetails = () => {
               <div className="border-t mt-8">
                 <div className="flex font-semibold justify-between py-6 text-sm uppercase">
                   <span>Subtotal</span>
-                  <span>${totalPrice.toFixed(2)}</span>
+                  <span>
+                    {currentCurrency?.countryCode} {totalPrice.toFixed(2)}
+                  </span>
                 </div>
 
-                <button className="bg-[#121212] py-3 px-6 rounded-lg font-semibold hover:bg-[#164A8C] transition text-sm mb-3 text-white uppercase w-full border">
-                  <Link to="/checkout">Checkout</Link>
-                </button>
+                <Link
+                  to={"/checkout"}
+                >
+                  <button className="bg-[#121212] py-3 px-6 rounded-lg font-semibold hover:bg-[#164A8C] transition text-sm mb-3 text-white uppercase w-full border">
+                    Checkout
+                  </button>
+                </Link>
                 <button className=" font-semibold transition text-sm text-[#121212] uppercase w-full ">
                   <Link to="/shop"> Or continue shopping</Link>
                 </button>

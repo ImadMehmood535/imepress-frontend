@@ -4,7 +4,7 @@ const CheckoutFormComponent = ({ register, errors }) => {
   return (
     <div className="form-area">
       <div className="w-full mx-auto">
-        <div className="bg-white p-4 md:p-8 rounded-lg shadow-md">
+        <div className="bg-white p-4 md:p-8 rounded-lg  ">
           <h1 className="text-2xl font-bold mb-5">Billing Details</h1>
 
           <div className="mb-6">

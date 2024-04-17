@@ -1,30 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Header_logo } from "../../assets";
 import { Button } from "@nextui-org/react";
 import useProductStore from "../../store/products";
 import NoContent from "../NoContent";
 import { Link } from "react-router-dom";
+import useCurrencyStore from "../../store/currency";
+import { convertor } from "../../utils/currencyConvertor";
 
 const CheckoutSummaryItemComponent = () => {
-  const { products, removeFromCart, updateProduct } = useProductStore();
+  const { products } = useProductStore();
+  const { currentCurrency } = useCurrencyStore();
   const [totalPrice, setTotalPrice] = useState(0);
 
-  const handleIncrement = (productId) => {
-    updateProduct({
-      id: productId,
-      quantity:
-        products.find((product) => product.id === productId).quantity + 1,
+  useEffect(() => {
+    let totalPrice = 0;
+    products.forEach((item) => {
+      totalPrice += convertor(item, currentCurrency) * item.quantity;
     });
-  };
-
-  const handleDecrement = (productId) => {
-    const currentQuantity = products.find(
-      (product) => product.id === productId
-    ).quantity;
-    if (currentQuantity > 1) {
-      updateProduct({ id: productId, quantity: currentQuantity - 1 });
-    }
-  };
+    setTotalPrice(totalPrice.toFixed(2));
+  }, [products, currentCurrency]);
 
   return (
     <div>
@@ -64,18 +58,14 @@ const CheckoutSummaryItemComponent = () => {
                         </div>
                         <h4 className=" font-bold text-base text-[#121212]">
                           <span className="price">
-                            ${(item.price * item.quantity).toFixed(2)}
+                            {currentCurrency?.countryCode}{" "}
+                            {(
+                              convertor(item, currentCurrency) * item.quantity
+                            ).toFixed(2)}
                           </span>
                         </h4>
-                        <div
-                          className="font-semibold text-[#121212] hover:text-red-500 text-xs cursor-pointer"
-                          onClick={() => removeFromCart(item?.id)}
-                        >
-                          Remove
-                        </div>
                       </div>
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -90,8 +80,10 @@ const CheckoutSummaryItemComponent = () => {
 
           <div className="border-t mt-8">
             <div className="flex font-semibold justify-between py-6 text-sm uppercase">
-              <span>Subtotal</span>
-              <span>$123</span>
+              <span>Total</span>
+              <span>
+                {currentCurrency?.countryCode} {totalPrice}
+              </span>
             </div>
 
             <Button
@@ -100,9 +92,12 @@ const CheckoutSummaryItemComponent = () => {
             >
               Checkout
             </Button>
-            <button className="font-semibold transition text-sm text-[#121212] uppercase w-full ">
-              Or continue shopping
-            </button>
+            <Link
+              to={"/cart"}
+              className="font-semibold transition text-sm text-center table text-[#121212] uppercase w-full "
+            >
+              Or get back to cart
+            </Link>
           </div>
         </div>
       ) : (

@@ -12,7 +12,7 @@ import { Filter } from "../../assets";
 const Shop = () => {
   let query = useQuery();
   let id = parseInt(query.get("id"));
-  const [option, setOption] = useState(4);
+  const [option, setOption] = useState(3);
   const [isChecked, setIsChecked] = useState(false);
   const [sorting, setSorting] = useState("All");
   const [products, setProducts] = useState(null);

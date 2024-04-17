@@ -30,11 +30,11 @@ const CheckoutComponent = () => {
       <div className="Checkout-body pt-24 py-12">
         <div className="container w-full px-5 xl:w-[80%] mx-auto">
           <form onSubmit={handleSubmit(onSubmit)} className="w-full">
-            <div className="flex justify-between flex-col md:flex-row">
-              <div className="w-full md:w-4/6 bg-white">
+            <div className="flex justify-between flex-col md:flex-row gap-5">
+              <div className="w-full md:w-8/12 bg-white">
                 <CheckoutFormComponent errors={errors} register={register} />
               </div>
-              <div className=" w-full md:w-3/12 ">
+              <div className=" w-full md:w-4/12 ">
                 <CheckoutSummaryItemComponent />
               </div>
             </div>
