@@ -7,23 +7,23 @@ import useProductStore from "../../store/products";
 import useWishListStore from "../../store/wishlist";
 import useUserStore from "../../store/user";
 import SignModal from "../SignModal";
+import useCurrencyStore from "../../store/currency";
+import PriceAndCode from "./PriceAndCode";
 
 const ProductCart = ({ item }) => {
   const { addToCart } = useProductStore();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { addToWishList } = useWishListStore();
   const { user } = useUserStore();
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
+  const { currentCurrency } = useCurrencyStore();
 
   const handleAddToCart = (item) => {
-
     if (user?.authorized) {
       addToCart(item);
       setIsModalOpen(true);
-
     } else {
-      setOpen(true)
-
+      setOpen(true);
     }
   };
 
@@ -52,10 +52,13 @@ const ProductCart = ({ item }) => {
           </div>
           <div className="options absolute top-4 -right-20 transition z-20">
             <div className="options_list flex flex-wrap flex-col gap-4">
-              <div onClick={() => addToWishList(item)} className="rounded-lg bg-white hover:text-white hover:bg-themePrimary-0 transition-all shadow-lg flex justify-center px-4 py-4">
+              <div
+                onClick={() => addToWishList(item)}
+                className="rounded-lg bg-white hover:text-white hover:bg-themePrimary-0 transition-all shadow-lg flex justify-center px-4 py-4"
+              >
                 <FaRegHeart className="text-2xl " />
               </div>
-              <Quickview item={item} />
+              <Quickview item={item} currentCurrency={currentCurrency} />
             </div>
           </div>
           <Link to={`/shop/${item?.slug}`}>
@@ -80,14 +83,7 @@ const ProductCart = ({ item }) => {
           <h4 className="font-bold text-[#121212] text-base capitalize">
             {item?.name}
           </h4>
-          <div className="flex flex-wrap items-center gap-2">
-            <p className="text-[#DB4444] font-medium uppercase">
-              AED {item?.price}
-            </p>
-            <span className="line-through text-[#A0A0A0] uppercase text-sm">
-              AED {item?.price + 200}
-            </span>
-          </div>
+          <PriceAndCode currentCurrency={currentCurrency} item={item} />
         </div>
       </div>
     </div>

@@ -7,8 +7,10 @@ import { errorToast } from "../../hooks/useToast";
 import useCurrencyStore from "../../store/currency";
 
 const CurrencyInput = () => {
-  const [selectedCurrency, setSelectedCurrency] = useState("AED");
-  const { handleCurrency  , currentCurrency} = useCurrencyStore();
+  const { handleCurrency, currentCurrency } = useCurrencyStore();
+  const [selectedCurrency, setSelectedCurrency] = useState(
+    currentCurrency?.countryCode
+  );
 
   const handleCurrencyChange = (e) => {
     setSelectedCurrency(e.target.value);
@@ -34,7 +36,7 @@ const CurrencyInput = () => {
       value={selectedCurrency}
       onChange={handleCurrencyChange}
       aria-label="currency"
-      defaultSelectedKeys={[selectedCurrency]}
+      defaultSelectedKeys={[currentCurrency?.countryCode]}
       selectorIcon={<IoMdArrowDropdownCircle color="black" />}
       items={currency}
       renderValue={(items) => {

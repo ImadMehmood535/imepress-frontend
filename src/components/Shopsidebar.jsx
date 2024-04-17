@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
-import { Checkbox, CheckboxGroup, Slider } from "@nextui-org/react"; // Remove CheckboxGroup and Checkbox imports
+import { Checkbox, CheckboxGroup, Slider } from "@nextui-org/react";
+import useCurrencyStore from "../store/currency";
 
 const Shopsidebar = ({
   brands,
@@ -11,15 +12,13 @@ const Shopsidebar = ({
   selectedPrice,
   setSelctedSubCategpries,
   setPageTitle,
-  id
+  id,
 }) => {
-
-
   const [openCategories, setOpenCategories] = useState(id ? [id] : []);
   const [isOpen, setIsOpen] = useState(true);
   const [isOpenBrand, setIsOpenBrand] = useState(true);
   const [isOpenPrice, setIsOpenPrice] = useState(true);
-
+  const { currentCurrency } = useCurrencyStore();
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -45,10 +44,10 @@ const Shopsidebar = ({
 
   const handleCategorySelect = (category) => {
     toggleCategory(category?.id);
-    setSelctedSubCategpries([])
+    setSelctedSubCategpries([]);
     setOpenCategories([category?.id]);
-    setSelctedCategories([category?.id])
-    setPageTitle(category?.name)
+    setSelctedCategories([category?.id]);
+    setPageTitle(category?.name);
   };
 
   return (
@@ -73,8 +72,20 @@ const Shopsidebar = ({
                     onClick={() => handleCategorySelect(category)}
                   >
                     {category.name}
-                    {isCategoryOpen(category?.id) && <div className="flex gap-3 items-center"> <p>({category?.subCategoriesQuanitity})</p> <FaAngleUp /> </div>}
-                    {!isCategoryOpen(category?.id) && <div className="flex gap-3 items-center"> <p>({category?.subCategoriesQuanitity})</p> <FaAngleUp /> </div>}
+                    {isCategoryOpen(category?.id) && (
+                      <div className="flex gap-3 items-center">
+                        {" "}
+                        <p>({category?.subCategoriesQuanitity})</p>{" "}
+                        <FaAngleUp />{" "}
+                      </div>
+                    )}
+                    {!isCategoryOpen(category?.id) && (
+                      <div className="flex gap-3 items-center">
+                        {" "}
+                        <p>({category?.subCategoriesQuanitity})</p>{" "}
+                        <FaAngleUp />{" "}
+                      </div>
+                    )}
                   </div>
                   {isCategoryOpen(category.id) && (
                     <div className="flex gap-4 flex-col">
@@ -84,7 +95,11 @@ const Shopsidebar = ({
                         onChange={setSelctedSubCategpries}
                       >
                         {category?.subCategories?.map((item, index) => (
-                          <Checkbox key={item?.id} value={item?.id} className="">
+                          <Checkbox
+                            key={item?.id}
+                            value={item?.id}
+                            className=""
+                          >
                             {item?.name}
                           </Checkbox>
                         ))}
@@ -97,26 +112,30 @@ const Shopsidebar = ({
           )}
         </div>
         <div className="relative transition-all mb-4 cursor-pointer">
-          <h4 onClick={toggleDropdownPrice}
+          <h4
+            onClick={toggleDropdownPrice}
             className="flex flex-wrap justify-between items-center w-full text-[#121212] font-bold text-xl mb-4"
           >
             Price Range
             {isOpenPrice ? <FaAngleDown /> : <FaAngleUp />}
           </h4>
 
-          {isOpenPrice &&
+          {isOpenPrice && (
             <div className="flex flex-col gap-2 w-full h-full max-w-md items-start justify-center">
               <Slider
                 size="sm"
-                label="Select a budget"
-                formatOptions={{ style: "currency", currency: "USD" }}
+                label="Range"
+                formatOptions={{
+                  style: "currency",
+                  currency: currentCurrency?.countryCode,
+                }}
                 step={10}
                 maxValue={1000}
                 minValue={0}
                 value={selectedPrice}
                 onChange={setSelectedPrice}
                 classNames={{
-                  base: "max-w-md",
+                  base: "max-w-lg ",
                   filler: "bg-[#121212]",
                   labelWrapper: "mb-2",
                   label: "font-medium text-default-700 text-medium",
@@ -131,26 +150,21 @@ const Shopsidebar = ({
                 }}
               />
             </div>
-          }
+          )}
         </div>
 
-
-        <div onClick={toggleDropdownBrand}
-          className="relative transition-all mb-4 cursor-pointer">
-          <h4
-            className="flex flex-wrap justify-between items-center w-full text-[#121212] font-bold text-xl mb-4"
-          >
+        <div
+          onClick={toggleDropdownBrand}
+          className="relative transition-all mb-4 cursor-pointer"
+        >
+          <h4 className="flex flex-wrap justify-between items-center w-full text-[#121212] font-bold text-xl mb-4">
             Brands
-
             {isOpenBrand ? <FaAngleDown /> : <FaAngleUp />}
           </h4>
 
-          {isOpenBrand &&
+          {isOpenBrand && (
             <div className="flex gap-4 flex-col">
-              <CheckboxGroup
-                color="warning"
-                onValueChange={setSelectedBrands}
-              >
+              <CheckboxGroup color="warning" onValueChange={setSelectedBrands}>
                 {brands?.map((brand, index) => (
                   <Checkbox key={index} value={brand?.id} className="">
                     {brand?.name}
@@ -158,7 +172,7 @@ const Shopsidebar = ({
                 ))}
               </CheckboxGroup>
             </div>
-          }
+          )}
         </div>
       </div>
     </div>

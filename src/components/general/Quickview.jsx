@@ -6,13 +6,14 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import { FaStar } from "react-icons/fa";
-import useProductStore from "../../store/products"
+import useProductStore from "../../store/products";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import { FiEye } from "react-icons/fi";
 import useUserStore from "../../store/user";
 import SignModal from "../SignModal";
+import PriceAndCode from "./PriceAndCode";
 
-const Quickview = ({ item }) => {
+const Quickview = ({ item, currentCurrency }) => {
   const [quantity, setQuantity] = useState(1);
   const { addToCart } = useProductStore();
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
@@ -20,15 +21,12 @@ const Quickview = ({ item }) => {
   const { user } = useUserStore();
   const [open, setOpen] = useState(false);
 
-
   const handleAddToCart = (item) => {
-
     if (user?.authorized) {
       addToCart(item);
       onClose();
-
     } else {
-      setOpen(true)
+      setOpen(true);
     }
   };
 
@@ -97,18 +95,10 @@ const Quickview = ({ item }) => {
                       {/* <span className="">(10)</span> */}
                     </div>
                     {/* price area */}
-                    <div className="flex flex-wrap gap-4 mb-4">
-                      <div className="saleprice">
-                        <h4 className="text-[#DB4444] text-xl">
-                          $ <spam>{item?.price}</spam>
-                        </h4>
-                      </div>
-                      <div className="regprice">
-                        <h4 className="text-[#A0A0A0] text-lg line-through">
-                          $ <spam>{item?.price + 200}</spam>
-                        </h4>
-                      </div>
-                    </div>
+                    <PriceAndCode
+                      item={item}
+                      currentCurrency={currentCurrency}
+                    />
                     {/* short description */}
                     <div className="description mb-4">
                       <p className="">{item?.description.slice(0, 200)}</p>

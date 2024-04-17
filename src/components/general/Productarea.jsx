@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ProductCart from "./ProductCart";
+import useCurrencyStore from "../../store/currency";
 
 const Productarea = ({
   data,
@@ -11,6 +12,8 @@ const Productarea = ({
   selectedSubCategoies,
   selectedCategories,
 }) => {
+  const { currentCurrency } = useCurrencyStore();
+
   const filteredData1 = isChecked
     ? data.filter((item) => item?.tags?.sale)
     : data;
@@ -18,7 +21,8 @@ const Productarea = ({
   const filteredData2 = selectedPrice
     ? filteredData1.filter(
         (item) =>
-          item.price >= selectedPrice[0] && item.price <= selectedPrice[1]
+          item.price * currentCurrency?.currencyValue >= selectedPrice[0] &&
+          item.price * currentCurrency?.currencyValue <= selectedPrice[1]
       )
     : filteredData1;
 
