@@ -27,6 +27,7 @@ import popupimage from "./images/popupimage.png";
 import emptyCart from "./images/empty-cart.png";
 import Delivery_Truck from "./images/Delivery-Truck.png";
 import nocontent from "./images/nocontent.svg";
+import about_image from "./images/about-image.jpg";
 
 export {
   Header_logo,
@@ -58,4 +59,5 @@ export {
   emptyCart,
   Delivery_Truck,
   nocontent,
+  about_image
 };
