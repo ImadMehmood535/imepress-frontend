@@ -15,6 +15,7 @@ import ForgotPassword from "../pages/Forgot-Password";
 import TermsAndConditions from "../pages/TermsAndConditions";
 import Contact from "../pages/Contact";
 import Checkout from "../pages/Checkout";
+import About from "../pages/About";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/about",
+        element: <About />,
       },
       {
         path: "/sale",
