@@ -16,6 +16,7 @@ import TermsAndConditions from "../pages/TermsAndConditions";
 import Contact from "../pages/Contact";
 import Checkout from "../pages/Checkout";
 import About from "../pages/About";
+import ProtectedRoutes from "../components/ProtectedRoutes";
 
 const router = createBrowserRouter([
   {
@@ -41,7 +42,7 @@ const router = createBrowserRouter([
         path: "/shop/:slug",
         element: <SlugShop />,
       },
-      
+
       {
         path: "/blogs",
         element: <Blog />,
@@ -83,8 +84,8 @@ const router = createBrowserRouter([
         element: <Contact />,
       },
       {
-        path: "/checkout",
-        element: <Checkout/>,
+        element: <ProtectedRoutes />,
+        children: [{ path: "/checkout", element: <Checkout /> }],
       },
     ],
   },

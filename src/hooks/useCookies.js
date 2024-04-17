@@ -1,4 +1,4 @@
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 
 const setCookie = (key, value) => {
   Cookies.set(key, value);
@@ -8,4 +8,8 @@ const deleteCookie = (cookie) => {
   Cookies.remove(cookie);
 };
 
-export { setCookie, deleteCookie };
+const getCookie = (key) => {
+  return Cookies.get(key);
+};
+
+export { setCookie, deleteCookie, getCookie };
