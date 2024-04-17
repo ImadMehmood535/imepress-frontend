@@ -30,7 +30,7 @@ const ProductCart = ({ item }) => {
   return (
     <div className="ProductCart">
       <div className="item group/product transition-all duration-500 ">
-        <div className="image-area relative border py-14 px-10 text-center min-h-[450px] overflow-hidden flex items-center justify-center">
+        <div className="image-area relative border border-[#000000] group-hover/product:border-[#15498B]  py-14 px-10 text-center min-h-[450px] overflow-hidden flex items-center justify-center ">
           <div className="tag-wrapper absolute top-2 left-2">
             {Object.entries(item.tags).map(([tag, value]) => {
               if (value) {

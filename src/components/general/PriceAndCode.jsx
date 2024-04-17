@@ -4,7 +4,7 @@ import { calculateDiscount, convertor } from "../../utils/currencyConvertor";
 const PriceAndCode = ({ currentCurrency, item }) => {
   return (
     <div className="flex flex-wrap items-center gap-2">
-      <p className="text-[#DB4444] font-medium uppercase">
+      <p className="text-[#DB4444] font-normal uppercase">
         {currentCurrency?.countryCode} {convertor(item, currentCurrency)}
       </p>
       {item?.discount > 0 && (

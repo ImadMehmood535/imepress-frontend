@@ -28,11 +28,11 @@ const CurrencyInput = () => {
   useEffect(() => {
     getCurrency();
   }, [selectedCurrency]);
-  console.log(currentCurrency, "currency");
+  // console.log(currentCurrency, "currency");
 
   return (
     <Select
-      className="max-w-xs"
+      className="max-w-md"
       value={selectedCurrency}
       onChange={handleCurrencyChange}
       aria-label="currency"
