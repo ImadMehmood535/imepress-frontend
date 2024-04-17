@@ -31,7 +31,7 @@ const Saletimer = () => {
       <div className="w-full overflow-hidden">
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="w-full">
-            <img alt="imagde" src={dealimg1} width={800} height={450} className="w-full h-full" />
+            <img alt="imagde" src={dealimg1} width={800} height={600} className="w-full h-full min-h-[550px]" />
           </div>
           <div className="w-full bg-themePrimary-0 flex flex-col justify-center py-2 px-2">
             <div className="flex flex-wrap flex-col items-center">
@@ -41,7 +41,7 @@ const Saletimer = () => {
               <h2 className="text-center text-3xl xl:text-4xl mb-4 text-white">
                 Save 20% Off Women’s tops
               </h2>
-              <div id="countdown">
+              <div id="countdown" className="mb-5">
                 <ul className="counter-list text-center text-white flex flex-wrap justify-center items-center mb-3">
                   <li>
                     <span id="days">{days}</span> days

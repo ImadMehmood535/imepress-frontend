@@ -1,6 +1,7 @@
 import { Autocomplete, AutocompleteItem, Avatar } from "@nextui-org/react";
 import React from "react";
 import { LiaSearchSolid } from "react-icons/lia";
+import { LuSearch } from "react-icons/lu";
 import { Link, useNavigate } from "react-router-dom";
 
 const Searcharea = ({ productsData }) => {
@@ -14,7 +15,7 @@ const Searcharea = ({ productsData }) => {
       className="max-w-lg"
       label="Search your products"
       disableSelectorIconRotation
-      selectorIcon={<LiaSearchSolid className="text-2xl mr-3" />}
+      selectorIcon={<LuSearch  className="text-2xl mr-3" />}
     >
       {productsData?.map((item) => (
         <AutocompleteItem

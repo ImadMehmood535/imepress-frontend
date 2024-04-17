@@ -35,6 +35,16 @@
     height: 40px;
     border-radius: 50%;
   }
+    .slider-area .swiper {
+    overflow: visible;
+}
+
+ .slider-area .swiper .swiper-button-prev {
+    left: -4px;
+}
+ .slider-area .swiper  .swiper-button-next{
+  right: -4px;
+}
   .DailySale-slider .swiper-button-prev,
   .DailySale-slider .swiper-button-next {
     background-color: white;

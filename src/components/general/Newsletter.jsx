@@ -32,7 +32,7 @@ const Newsletter = () => {
   return (
     <div className="Newsletter py-12">
       <div className="container w-full px-5 xl:w-[80%] mx-auto">
-        <h2 className="text-center text-3xl md:text-4xl mb-8">
+        <h2 className="text-center text-3xl md:text-4xl mb-8 font-semibold">
           Subscribe To Save 10%
         </h2>
         <form onSubmit={handleSubmit(onSubmit)}>

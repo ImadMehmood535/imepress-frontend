@@ -33,13 +33,13 @@ const Featurecollection = () => {
                   </h4>
                   <div className="flex flex-wrap justify-center items-center gap-2 mb-2">
                     <span className="text-[#A0A0A0] uppercase ">Under</span>
-                    <p className="text-[#0C8C6C] font-medium uppercase">
+                    <p className="text-[#0C8C6C] font-normal uppercase">
                       AED {item.reg_price}
                     </p>
                   </div>
                   <Link
                     to="/"
-                    className="text-black font-semibold text-base py-2 px-1 border-b-1 border-black transition hover:text-[#0C8C6C] hover:border-[#0C8C6C]"
+                    className="text-black font-bold text-base py-2 px-1 border-b-1 border-black transition hover:text-[#0C8C6C] hover:border-[#0C8C6C]"
                   >
                     Shop Now
                   </Link>

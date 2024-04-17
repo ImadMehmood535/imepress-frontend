@@ -31,7 +31,7 @@ const Footer = () => {
                     />
                   </Link>
                 </div>
-                <div className="flex justify-start md:justify-center">
+                <div className="flex justify-start ">
                   <Link to={"/"} className="mr-6 cursor-pointer" target="_blank">
                     <FaFacebookF className="fill-[#121212] hover:fill-[#ecca63]" />
                   </Link>
