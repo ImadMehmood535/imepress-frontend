@@ -43,7 +43,7 @@ const CheckoutSummaryItemComponent = () => {
               <div className="w-full" key={index}>
                 <div className="py-4 ">
                   <div className="flex flex-wrap flex-col sm:flex-row items-start sm:items-center">
-                    <div className="flex w-full sm:w-9/12">
+                    <div className="flex w-full ">
                       <div className="w-36">
                         <Link to={`/shop/${item?.slug}`} className="w-36">
                           <img
@@ -59,6 +59,14 @@ const CheckoutSummaryItemComponent = () => {
                         <span className="font-bold text-base mb-3">
                           {item?.name}
                         </span>
+                        <div className="block sm:hidden mr-2">
+                          <b>Total Price</b>
+                        </div>
+                        <h4 className=" font-bold text-base text-[#121212]">
+                          <span className="price">
+                            ${(item.price * item.quantity).toFixed(2)}
+                          </span>
+                        </h4>
                         <div
                           className="font-semibold text-[#121212] hover:text-red-500 text-xs cursor-pointer"
                           onClick={() => removeFromCart(item?.id)}
@@ -68,16 +76,6 @@ const CheckoutSummaryItemComponent = () => {
                       </div>
                     </div>
 
-                    <div className="flex w-full sm:w-3/12 px-5 sm:px-0 my-3 sm:justify-center">
-                      <div className="block sm:hidden mr-2">
-                        <b>Total Price</b>
-                      </div>
-                      <h4 className="text-center font-bold text-base text-[#121212]">
-                        <span className="price">
-                          ${(item.price * item.quantity).toFixed(2)}
-                        </span>
-                      </h4>
-                    </div>
                   </div>
                 </div>
               </div>

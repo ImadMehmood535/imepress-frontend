@@ -34,7 +34,7 @@ const CheckoutComponent = () => {
               <div className="w-full md:w-4/6 bg-white">
                 <CheckoutFormComponent errors={errors} register={register} />
               </div>
-              <div className=" w-full md:w-3/12 px-4 ">
+              <div className=" w-full md:w-3/12 ">
                 <CheckoutSummaryItemComponent />
               </div>
             </div>
